@@ -17,5 +17,5 @@ List of projects:
   recipe builder  
   desktop organizer 
   webcrawler 
-  thrift store 
+  thrift store  
 
