@@ -1,4 +1,4 @@
-class Node: 
+class Node: #nodes for linked lists 
     def __init__(self, key = -1, val = -1, freq =1): 
         self.key = key 
         self.val = val
@@ -6,7 +6,7 @@ class Node:
         self.next = None 
         self.prev = None 
 
-class LRUCache: 
+class LRUCache: # create a new lru cache for each frequency - holds nodes within a linked list 
     def __init__(self, cache_key = 1):
         self.cache_key = cache_key 
         self.head = Node() 
@@ -23,9 +23,9 @@ class LRUCache:
     def remove(self, node): 
         node.next.prev = node.prev 
         node.prev.next = node.next 
-        return self.isempty()
+        return self.isempty() 
             
-    def remove_last(self):          
+    def remove_last(self):           
         lru = self.tail.prev
         if lru.prev == None: 
             print(lru.key, lru.val) 
@@ -38,7 +38,7 @@ class LRUCache:
     def isempty(self): 
         return self.head.next == self.tail 
 
-class LFUCache:
+class LFUCache: # stores nodes by key and stores lrucaches based on frequency so can retrieve lfu node (or if more than one least freq used gets lru) using constant runtime 
 
     def __init__(self, capacity: int):
         self.capacity = capacity 
@@ -69,6 +69,7 @@ class LFUCache:
         cur_cache.add(node) 
         
         return node.val
+        
     def lru_map_add(self, node, node_freq): 
         if node_freq not in self.lru_map: 
             self.lru_map[node_freq] = LRUCache(node_freq)
@@ -81,8 +82,7 @@ class LFUCache:
 
             if self.size == self.capacity:
                 self.size -= 1
-                lru_cache = self.lru_map[self.min_freq] 
-                print(self.size, self.capacity, key, value)
+                lru_cache = self.lru_map[self.min_freq] # get lru node 
                 node = lru_cache.remove_last() 
                 # remove reference to node 
                 del self.key_node_map[node.key]
@@ -90,8 +90,9 @@ class LFUCache:
             new_node = Node(key, value)
             self.key_node_map[key] = new_node
             self.size += 1
-            self.min_freq = 1 # either reaffirming as 1 or setting as 1 now that have a lru with freq = 1
+            self.min_freq = 1         # either reaffirming as 1 or setting as 1 now that have a lru with freq = 1
             self.lru_map_add(new_node, new_node.freq)
+        
         else: 
             self.key_node_map[key].val = value # update value 
             node = self.key_node_map[key] 
