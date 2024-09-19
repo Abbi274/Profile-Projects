@@ -12,7 +12,7 @@
 
 List of projects:  
   basic pygame space shooter, 
-  lrucache, 
+  LFU cache, 
   library build, 
   desktop organizer, 
   webcrawler,
