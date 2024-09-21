@@ -16,5 +16,5 @@ List of projects:
   library build, 
   desktop organizer, 
   webcrawler,
-  pygame kitchen cleanup - PLAY THIS ONE! I created it using 3D paint. It's fun and I'm still adding more to it 
+  pygame kitchen cleanup - created using 3D paint - still adding more to it 
 
